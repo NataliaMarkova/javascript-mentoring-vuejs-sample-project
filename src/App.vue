@@ -4,7 +4,11 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>
-    <router-view/>
+    <main class>
+      <h1>Keep Your Notes</h1>
+      <p>This this a JavaScript Mentoring Vue JS Project</p>
+      <router-view/>
+    </main>
   </div>
 </template>
 
