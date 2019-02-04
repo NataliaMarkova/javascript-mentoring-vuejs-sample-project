@@ -12,7 +12,12 @@
       <button type="submit" v-on:click.prevent="addNote" class="btn btn-info btn-lg" >Save</button>
     </form>
     <div class="card-deck">
-      <div class="card border-info" v-for="note in notes" :key=note.id>
+      <div class="card border-info" v-for="(note, index) in notes" :key=note.index>
+        <div class="card-header">
+          <span v-show="!note.done" v-on:click="markAsDone(index)" class="fa fa-check-circle-o fa-2x" aria-hidden="true" data-toggle="tooltip" title="Mark as done" />
+          <i v-show="note.done" class="fa fa-check-circle fa-2x" aria-hidden="true"></i>
+          <i class="fa fa-times-circle fa-2x" v-on:click="remove(index)" aria-hidden="true" data-toggle="tooltip" title="Remove"></i>
+        </div>
         <NoteComponent v-bind:note="note"></NoteComponent>
         <div class="card-footer">
           <div class="btn-toolbar" role="toolbar">
@@ -65,6 +70,17 @@ export default {
     },
     validateForm: function(): boolean {
       return this.title.trim().length + this.description.trim().length > 0;
+    },
+    markAsDone : function(index: number) :void {
+      const notes: Array<Note> = this.notes;
+      notes[index].done = true;
+      this.notes = notes;
+     
+    },
+    remove : function(index: number) :void {
+      const notes: Array<Note> = this.notes;
+      notes.splice(index, 1);
+      this.notes = notes;
     }
   }
 }
@@ -80,6 +96,24 @@ export default {
   margin-right: 10px;
 }
 .error {
-  color: red;
+  color: darkred;
 }
+
+.fa-check-circle-o {
+  color: darkolivegreen;
+}
+
+.fa-check-circle {
+  color: green;
+}
+
+.fa-times-circle {
+  color:darkred;
+  
+}
+
+.fa {
+  margin-right: 5px;
+}
+
 </style>
