@@ -4,30 +4,35 @@
     <form class="new-note">
       <p v-show='!isValid' class='error'>Please fill title and/or description</p>
       <div class="form-group">
-        <label for='title'>Title</label>
-        <input type='text' id='title' class='form-control' v-model='title' name='title'> 
+        <input type='text' id='title' class='form-control' v-model='title' name='title' placeholder="Title"> 
       </div>
       <div class="form-group">
-        <label for='description'>Description</label>
-        <textarea class='form-control' rows='3' id='description' v-model='description' name='description'></textarea>
+        <textarea class='form-control' rows='2' id='description' v-model='description' name='description' placeholder="Description"></textarea>
       </div>
-      <button type="submit" v-on:click.prevent="addNote" class="btn btn-primary" >Save</button>
+      <button type="submit" v-on:click.prevent="addNote" class="btn btn-info btn-lg" >Save</button>
     </form>
-    <h2>Notes</h2>
-     <ul class="collection col s6 offset-s3">
-      <li class="collection-item" v-for="note in this.notes" :key="note.id">
-        <div>{{note.title}}</div>
-        <div>{{note.description}}</div>  
-      </li>
-    </ul>
+    <div class="card-deck">
+      <div class="card border-info" v-for="note in notes" :key=note.id>
+        <NoteComponent v-bind:note="note"></NoteComponent>
+        <div class="card-footer">
+          <div class="btn-toolbar" role="toolbar">
+            <button type="button" class="btn btn-info">Edit</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script  lang="ts">
 import { Note } from "../types"
+import NoteComponent from '@/components/Note.vue'
 
 export default {
-  name: 'NewNote',
+  name: 'Notes',
+  components: {
+    NoteComponent
+  },
   data: function() {
     return  {
       title: '',
@@ -66,10 +71,14 @@ export default {
 </script>
 
 <style lang="less">
-.new-note {
-  border: 1px solid rgba(121, 121, 121, 1);
+.card {
+  min-width: 15rem !important; 
+  max-width: 15rem;
+  margin: 15px;
 }
-
+.btn {
+  margin-right: 10px;
+}
 .error {
   color: red;
 }

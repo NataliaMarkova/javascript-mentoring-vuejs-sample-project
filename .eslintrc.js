@@ -1,7 +1,8 @@
 module.exports = {
   root: true,
   env: {
-    node: true
+    node: true,
+    es6: true
   },
   'extends': [
     'plugin:vue/essential',
@@ -10,7 +11,19 @@ module.exports = {
   ],
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    "indent": [
+      "error",
+      2
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "space-before-function-paren": "off",
+    "no-unused-vars": "off",
+    "no-extra-semi": "off",
+    "semi": ["error", "never", { "beforeStatementContinuationChars": "always"}] 
   },
   parserOptions: {
     parser: 'typescript-eslint-parser'

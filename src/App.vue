@@ -5,8 +5,10 @@
       <router-link to="/about">About</router-link>
     </div>
     <main class>
-      <h1>Keep Your Notes</h1>
-      <p>This this a JavaScript Mentoring Vue JS Project</p>
+      <div class="header">
+        <h1>Keep Your Notes</h1>
+        <p>This this a JavaScript Mentoring Vue JS Project</p>
+      </div>
       <router-view/>
     </main>
   </div>
@@ -17,11 +19,15 @@
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+.header {
   text-align: center;
-  color: #2c3e50;
+  color: #2c3e50;  
 }
 #nav {
   padding: 30px;
+  text-align: center;
+  color: #2c3e50;
   a {
     font-weight: bold;
     color: #2c3e50;

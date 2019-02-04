@@ -1,17 +1,17 @@
 <template>
   <div class="notes container">
-    <NewNote/>
+    <Notes/>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import NewNote from '@/components/NewNote.vue'
+import Notes from '@/components/Notes.vue'
 
 @Component({
   components: {
-    NewNote
+    Notes
   }
 })
-export default class Notes extends Vue {}
+export default class Home extends Vue {}
 </script>
