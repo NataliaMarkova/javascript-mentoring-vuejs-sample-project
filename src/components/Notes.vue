@@ -1,5 +1,5 @@
 <template>
-  <div class="edit-new-note">
+  <div class="notes">
     <h3>Take a note</h3>
     <form class="new-note">
       <p v-show='!isValid' class='error'>Please fill title and/or description</p>
@@ -12,19 +12,9 @@
       <button type="submit" v-on:click.prevent="addNote" class="btn btn-info btn-lg" >Add</button>
     </form>
     <div class="card-deck">
-      <div class="card border-info" v-for="(note, index) in notes" :key=note.index>
-        <div class="card-header">
-          <span v-show="!note.done" v-on:click="markAsDone(index)" class="fa fa-check-circle-o fa-2x" aria-hidden="true" data-toggle="tooltip" title="Mark as done" />
-          <i v-show="note.done" class="fa fa-check-circle fa-2x" aria-hidden="true"></i>
-          <i class="fa fa-times-circle fa-2x" v-on:click="remove(index)" aria-hidden="true" data-toggle="tooltip" title="Remove"></i>
-        </div>
-        <NoteComponent v-bind:note="note"></NoteComponent>
-        <div class="card-footer">
-          <div class="btn-toolbar" role="toolbar">
-            <button type="button" class="btn btn-info">Edit</button>
-          </div>
-        </div>
-      </div>
+      <template  v-for="(note, index) in notes">
+        <NoteComponent v-bind:note="note" v-bind:index="index" v-bind:key="index"></NoteComponent>
+      </template>
     </div>
   </div>
 </template>
@@ -61,13 +51,6 @@ export default {
     },
     validateForm: function(): boolean {
       return this.title.trim().length + this.description.trim().length > 0;
-    },
-    markAsDone : function(index: number) :void {
-      this.$store.commit('markAsDone', index);
-     
-    },
-    remove : function(index: number) :void {
-      this.$store.commit('remove', index);
     }
   }
 }
