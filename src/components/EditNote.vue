@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h3>{{header}}</h3>
+    <h4>{{header}}</h4>
     <form class="new-note">
       <p v-show='!isValid' class='error'>Please fill title and/or description</p>
       <div class="form-group">

@@ -1,5 +1,11 @@
 <template>
   <div class="notes container">
+    <div class="search-bar container">
+        <input type="text" v-model="search" class="form-control" placeholder="Fina a note...">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+    </div>
     <EditNote header="Take a note" actionName="Add"></EditNote>
     <div class="card-deck container">
       <template  v-for="(note, index) in notes">
@@ -20,10 +26,39 @@ export default {
     NoteComponent,
     EditNote
   },
+  data: function() {
+    return { 
+      search: ""
+    };
+  },
   computed: {
     notes() : Array<Note> {
+      return this.originNotes.filter(note => {
+        return note.title.toLowerCase().includes(this.search.toLowerCase())
+          || note.description.toLowerCase().includes(this.search.toLowerCase())
+      });
+    },
+    originNotes() : Array<Note> {
       return this.$store.state.notes;
     }
   }
 }
 </script>
+
+<style lang="less">
+
+  .search-bar {
+    position: relative;
+    margin: 20px 0 20px 0;
+  }
+
+  .search-icon {
+    position: absolute;
+    top: 3%;
+    right: 16px;
+    padding: 0;
+    color: #0277bd;
+    font-size: 1.5rem;
+  }
+
+</style>
