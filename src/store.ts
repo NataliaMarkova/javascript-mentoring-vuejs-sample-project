@@ -12,11 +12,14 @@ export default new Vuex.Store({
     addNote(state, note: Note): void  {
       state.notes.push(note);  
     },
-    markAsDone(state, index : number): void {
+    markAsDone(state, index: number): void {
       state.notes[index].done = true;
     },
-    remove(state, index : number): void {
+    remove(state, index: number): void {
       state.notes.splice(index, 1);
+    },
+    editNote(state, data = {index: Number, note: Note} ) :void {
+      state.notes[data.index] = data.note; 
     }
   },
   actions: {

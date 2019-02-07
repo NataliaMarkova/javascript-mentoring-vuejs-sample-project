@@ -11,7 +11,7 @@
     </div>
     <div class="card-footer">
       <div class="btn-toolbar" role="toolbar">
-        <button type="button" class="btn btn-info">Edit</button>
+        <router-link v-bind:to="'note/' + index" class="btn btn-info">Edit</router-link>
       </div>
     </div>
   </div>
@@ -39,8 +39,34 @@ export default {
 </script>
 
 <style lang="less">
+
 .note {
   border-bottom: 1px solid rgba(121, 121, 121, 1);
   padding: 10px;
 }
+
+.card {
+  min-width: 15rem !important; 
+  max-width: 15rem;
+  margin: 15px;
+}
+
+.fa-check-circle-o {
+  color: darkolivegreen;
+  cursor: pointer;
+}
+
+.fa-check-circle {
+  color: green;
+}
+
+.fa-times-circle {
+  color:darkred;
+  cursor: pointer; 
+}
+
+.fa {
+  margin-right: 5px;
+}
+
 </style>
