@@ -9,7 +9,7 @@
       <div class="form-group">
         <textarea class='form-control' rows='2' id='description' v-model='description' name='description' placeholder="Description"></textarea>
       </div>
-      <button type="submit" v-on:click.prevent="addNote" class="btn btn-info btn-lg" >Save</button>
+      <button type="submit" v-on:click.prevent="addNote" class="btn btn-info btn-lg" >Add</button>
     </form>
     <div class="card-deck">
       <div class="card border-info" v-for="(note, index) in notes" :key=note.index>
@@ -42,28 +42,19 @@ export default {
     return  {
       title: '',
       description: '',
-      isValid: true,
-      notes: Array<Note>()
+      isValid: true
     }
   },
-  watch: {
-    notes: {
-      handler() {
-        localStorage.notes = JSON.stringify(this.notes);
-      },
-      deep: true,
-    },
-  },
-  mounted() {
-    if (localStorage.notes) {
-      this.notes = JSON.parse(localStorage.notes);
+  computed: {
+    notes() : Array<Note> {
+      return this.$store.state.notes;
     }
   },
   methods : {
     addNote: function () {
       this.isValid = this.validateForm();
       if (this.isValid) {
-        this.notes.push(new Note(this.title, this.description));
+        this.$store.commit('addNote', new Note(this.title, this.description));
         this.title = '';
         this.description = '';
       }  
@@ -72,15 +63,11 @@ export default {
       return this.title.trim().length + this.description.trim().length > 0;
     },
     markAsDone : function(index: number) :void {
-      const notes: Array<Note> = this.notes;
-      notes[index].done = true;
-      this.notes = notes;
+      this.$store.commit('markAsDone', index);
      
     },
     remove : function(index: number) :void {
-      const notes: Array<Note> = this.notes;
-      notes.splice(index, 1);
-      this.notes = notes;
+      this.$store.commit('remove', index);
     }
   }
 }
