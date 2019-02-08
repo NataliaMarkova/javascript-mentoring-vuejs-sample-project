@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { Note } from "./types"
+import { Note } from './types'
+import axios from 'axios'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   state: {
     notes: Array<Note>()
   },
@@ -18,11 +19,24 @@ export default new Vuex.Store({
     remove(state, index: number): void {
       state.notes.splice(index, 1);
     },
-    editNote(state, data = {index: Number, note: Note} ) :void {
+    editNote(state, data = {index: Number, note: Note}):void {
       state.notes[data.index] = data.note; 
+    },
+    setNotes(state, notes: Array<Note>): void {
+      state.notes = notes;
     }
   },
   actions: {
-
+    setInitialState ({ commit }) {
+      axios({ method: 'GET', 'url': 'http://localhost:3000/notes' }).then(result => {
+        commit('setNotes', result.data);
+      }, error => {
+        console.error(error);
+      });  
+    }
   }
 })
+
+store.dispatch('setInitialState');
+
+export default store;
