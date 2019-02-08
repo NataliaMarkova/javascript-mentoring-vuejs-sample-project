@@ -33,20 +33,19 @@ export default {
   },
   computed: {
     notes() : Array<Note> {
-      if (this.originNotes) {
-        return this.originNotes.filter(note => {
+      if (this.activeNotes) {
+        return this.activeNotes.filter(note => {
           return note.title.toLowerCase().includes(this.search.toLowerCase()) ||
             note.description.toLowerCase().includes(this.search.toLowerCase());
         });
       } else {
-        return this.originNotes;
+        return this.activeNotes;
       }
     },
-    originNotes() : Array<Note> {
-      return this.$store.state.notes;
+    activeNotes() : Array<Note> {
+      return this.$store.getters.activeNotes;
     }
   }
-}
 };
 </script>
 

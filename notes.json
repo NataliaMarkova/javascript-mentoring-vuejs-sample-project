@@ -4,61 +4,71 @@
       "id":  1,
       "title": "Title",
       "description": "Description",
-      "done": true
+      "done": true,
+      "archived": false
     },
     {
       "id":  2,
       "title": "Only title note",
       "description": "",
-      "done": false
+      "done": false,
+      "archived": false
     },
     {
       "id":  3,
       "title": "",
       "description": "Only Description Note",
-      "done": false
+      "done": false,
+      "archived": false
     },
     {
       "id":  4,
       "title": "Too many friends",
       "description": "Listening to Placebo",
-      "done": false
+      "done": false,
+      "archived": false
     },
     {
       "id":  5,
       "title": "Nirvana",
       "description": "In Utero",
-      "done": false
+      "done": false,
+      "archived": false
     },
     {
       "id":  6,
       "title": "Begin The End",
       "description": "Look me the eye say that again",
-      "done": false
+      "done": false,
+      "archived": false
     },
     {
       "id":  7,
       "title": "No feelings",
       "description": "I've got no feeling for anybody else. Except for myself!",
-      "done": false
+      "done": false,
+      "archived": true
     },
     {
       "id":  8,
       "title": "Tic Tac",
       "description": "Without you I'm nothing",
-      "done": true
+      "done": true,
+      "archived": false
     },
     {
       "id":  9,
       "title": "The picture",
       "description": "What's wrong with the picture?",
-      "done": false
+      "done": false,
+      "archived": true
     },
     {
       "id":  10,
       "title": "I've tried",
       "description": "God knows I've tried! But there's nothing you can do to change my mind",
-      "done": true
+      "done": true,
+      "archived": true
     }
   ]
 }

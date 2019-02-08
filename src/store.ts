@@ -9,6 +9,14 @@ const store = new Vuex.Store({
   state: {
     notes: Array<Note>()
   },
+  getters: {
+    activeNotes: state => {
+      return state.notes.filter(note => !note.archived);
+    },
+    archivedNotes: state => {
+      return state.notes.filter(note => note.archived);
+    }
+  },
   mutations: {
     addNote(state, note: Note): void {
       state.notes.push(note);
