@@ -1,17 +1,21 @@
 <template>
   <div class="card border-info">
     <div class="card-header">
-      <span v-show="!note.done" v-on:click="markAsDone(index)" class="fa fa-check-circle-o fa-2x" aria-hidden="true" data-toggle="tooltip" title="Mark as done" />
+      <span v-show="!note.done && !note.archived" v-on:click="markAsDone(note.id)" class="fa fa-check-circle-o fa-2x" aria-hidden="true" data-toggle="tooltip" title="Mark as done" />
       <i v-show="note.done" class="fa fa-check-circle fa-2x" aria-hidden="true"></i>
-      <i class="fa fa-times-circle fa-2x" v-on:click="remove(index)" aria-hidden="true" data-toggle="tooltip" title="Remove"></i>
+      <i class="fa fa-times-circle fa-2x" v-on:click="remove(note.id)" aria-hidden="true" data-toggle="tooltip" title="Remove"></i>
+      <span class="note-archive">
+        <i v-show="!note.archived" v-on:click="setArchived(note.id, true)" class="fa fa-file-archive-o fa-2x" aria-hidden="true" data-toggle="tooltip" title="Archive"></i>
+        <i v-show="note.archived" v-on:click="setArchived(note.id, false)" class="fa fa-undo fa-2x" aria-hidden="true" data-toggle="tooltip" title="Rearchive"></i>
+      </span>
     </div>
     <div class="card-body">
       <h5 class="card-title">{{note.title}}</h5>
       <p class="card-text">{{note.description}}</p>
     </div>
-    <div class="card-footer">
+    <div v-show="!note.archived" class="card-footer">
       <div class="btn-toolbar" role="toolbar">
-        <router-link v-bind:to="'note/' + index" class="btn btn-info">Edit</router-link>
+        <router-link v-bind:to="'note/' + note.id" class="btn btn-info">Edit</router-link>
       </div>
     </div>
   </div>
@@ -23,15 +27,17 @@ import { Note } from '../types';
 export default {
   name: 'NoteComponent',
   props: {
-    index: Number,
     note: Note
   },
   methods: {
-    markAsDone : function(index: number) :void {
-      this.$store.commit('markAsDone', index);   
+    markAsDone : function(id: number) :void {
+      this.$store.commit('markAsDone', id);   
     },
-    remove : function(index: number) :void {
-      this.$store.commit('remove', index);
+    remove : function(id: number) :void {
+      this.$store.commit('remove', id);
+    },
+    setArchived : function(id: number, archived: boolean) :void {
+      this.$store.commit('setArchived', { id: id, archived: archived });
     }
   }
 };
@@ -65,8 +71,22 @@ export default {
   cursor: pointer; 
 }
 
+.fa-undo {
+  color: #16af22;
+  cursor: pointer;
+}
+
+.fa-file-archive-o {
+  color: #4280b3;
+  cursor: pointer; 
+}
+
 .fa {
   margin-right: 5px;
+}
+
+.note-archive {
+  float: right;
 }
 
 </style>

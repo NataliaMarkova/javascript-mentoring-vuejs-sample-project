@@ -19,11 +19,11 @@ export default new Router({
       component: Archive
     },
     {
-      path: '/note/:index',
+      path: '/note/:id',
       name: 'editNote',
       component: EditNote,
       props: (route) => ({
-        index: route.params.index,
+        id: parseInt(route.params.id),
         header: 'Edit note',
         actionName: 'Save changes'
       })

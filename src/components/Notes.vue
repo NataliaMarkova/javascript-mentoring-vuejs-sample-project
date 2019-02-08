@@ -8,8 +8,8 @@
     </div>
     <EditNote header="Take a note" actionName="Add"></EditNote>
     <div class="card-deck container">
-      <template  v-for="(note, index) in notes">
-        <NoteComponent v-bind:note="note" v-bind:index="index" v-bind:key="index"></NoteComponent>
+      <template  v-for="note in notes">
+        <NoteComponent v-bind:note="note" v-bind:key="note.id"></NoteComponent>
       </template>
     </div>
   </div>

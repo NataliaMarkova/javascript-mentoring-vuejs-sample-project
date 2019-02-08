@@ -20,13 +20,13 @@ import { Note } from '../types';
 export default {
   name: 'EditNote',
   props: {
-    index: String,
+    id: Number,
     header: String,
     actionName: String
   },
-  async created() {
-    if (this.index) {
-      this.note = await this.$store.state.notes[this.index];
+  created() {
+    if (this.id) {
+      this.note = this.$store.getters.noteById(this.id);
     } else {
       this.note = new Note('', '');
     }
@@ -41,8 +41,8 @@ export default {
     saveNote: function () {
       this.isValid = this.validateForm();
       if (this.isValid) {
-        if (this.index) {
-          this.$store.commit('editNote', { index: this.index, note: this.note });
+        if (this.id) {
+          this.$store.commit('editNote', { id: this.id, note: this.note });
           this.$router.push('/');
         } else {
           this.$store.commit('addNote', this.note);
