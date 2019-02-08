@@ -16,9 +16,9 @@
 </template>
 
 <script  lang="ts">
-import { Note } from "../types"
-import NoteComponent from '@/components/Note.vue'
-import EditNote from '@/components/EditNote.vue'
+import { Note } from '../types';
+import NoteComponent from '@/components/Note.vue';
+import EditNote from '@/components/EditNote.vue';
 
 export default {
   name: 'Notes',
@@ -27,16 +27,16 @@ export default {
     EditNote
   },
   data: function() {
-    return { 
-      search: ""
+    return {
+      search: ''
     };
   },
   computed: {
     notes() : Array<Note> {
       if (this.originNotes) {
         return this.originNotes.filter(note => {
-          return note.title.toLowerCase().includes(this.search.toLowerCase())
-            || note.description.toLowerCase().includes(this.search.toLowerCase())
+          return note.title.toLowerCase().includes(this.search.toLowerCase()) ||
+            note.description.toLowerCase().includes(this.search.toLowerCase());
         });
       } else {
         return this.originNotes;
@@ -47,6 +47,7 @@ export default {
     }
   }
 }
+};
 </script>
 
 <style lang="less">

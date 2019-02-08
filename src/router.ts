@@ -1,10 +1,10 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Home from './views/Home.vue'
-import Archive from './views/Archive.vue'
-import EditNote from './components/EditNote.vue'
+import Vue from 'vue';
+import Router from 'vue-router';
+import Home from './views/Home.vue';
+import Archive from './views/Archive.vue';
+import EditNote from './components/EditNote.vue';
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   routes: [
@@ -24,9 +24,9 @@ export default new Router({
       component: EditNote,
       props: (route) => ({
         index: route.params.index,
-        header: "Edit note",
-        actionName: "Save changes" 
+        header: 'Edit note',
+        actionName: 'Save changes'
       })
     }
   ]
-})
+});

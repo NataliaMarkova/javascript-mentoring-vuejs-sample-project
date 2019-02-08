@@ -1,17 +1,17 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import { Note } from './types'
-import axios from 'axios'
+import Vue from 'vue';
+import Vuex from 'vuex';
+import { Note } from './types';
+import axios from 'axios';
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
     notes: Array<Note>()
   },
   mutations: {
-    addNote(state, note: Note): void  {
-      state.notes.push(note);  
+    addNote(state, note: Note): void {
+      state.notes.push(note);
     },
     markAsDone(state, index: number): void {
       state.notes[index].done = true;
@@ -19,8 +19,8 @@ const store = new Vuex.Store({
     remove(state, index: number): void {
       state.notes.splice(index, 1);
     },
-    editNote(state, data = {index: Number, note: Note}):void {
-      state.notes[data.index] = data.note; 
+    editNote(state, data = { index: Number, note: Note }):void {
+      state.notes[data.index] = data.note;
     },
     setNotes(state, notes: Array<Note>): void {
       state.notes = notes;
@@ -32,10 +32,10 @@ const store = new Vuex.Store({
         commit('setNotes', result.data);
       }, error => {
         console.error(error);
-      });  
+      });
     }
   }
-})
+});
 
 store.dispatch('setInitialState');
 

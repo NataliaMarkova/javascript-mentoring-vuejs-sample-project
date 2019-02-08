@@ -23,7 +23,7 @@ module.exports = {
     "space-before-function-paren": "off",
     "no-unused-vars": "off",
     "no-extra-semi": "off",
-    "semi": ["error", "never", { "beforeStatementContinuationChars": "always"}] 
+    "semi": [2, "always", { "omitLastInOneLineBlock": true }]
   },
   parserOptions: {
     parser: 'typescript-eslint-parser'

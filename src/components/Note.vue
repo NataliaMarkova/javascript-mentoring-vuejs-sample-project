@@ -18,7 +18,7 @@
 </template>
 
 <script  lang="ts">
-import { Note } from "../types"
+import { Note } from '../types';
 
 export default {
   name: 'NoteComponent',
@@ -28,14 +28,14 @@ export default {
   },
   methods: {
     markAsDone : function(index: number) :void {
-      this.$store.commit('markAsDone', index);
-     
+      this.$store.commit('markAsDone', index);   
     },
     remove : function(index: number) :void {
       this.$store.commit('remove', index);
     }
   }
-}
+};
+
 </script>
 
 <style lang="less">
